@@ -18,15 +18,5 @@ class EventUser(SQLModel, table=True):
     event_id: int = Field(foreign_key="event.id", primary_key=True)
     user_id: int = Field(foreign_key="user.id", primary_key=True)
 
-    event: Event = Relationship(
-        back_populates="users",
-        sa_relationship_kwargs={
-            "cascade": "all, delete",
-        },
-    )
-    user: User = Relationship(
-        sa_relationship_kwargs={
-            "cascade": "all, delete",
-        },
-        back_populates="events",
-    )
+    event: Event = Relationship(back_populates="users")
+    user: User = Relationship(back_populates="events")

@@ -15,15 +15,5 @@ class SessionUser(SQLModel, table=True):
     session_id: int = Field(foreign_key="session.id", primary_key=True)
     user_id: int = Field(foreign_key="user.id", primary_key=True)
 
-    session: "Session" = Relationship(
-        back_populates="users",
-        sa_relationship_kwargs={
-            "cascade": "all, delete",
-        },
-    )
-    user: "User" = Relationship(
-        sa_relationship_kwargs={
-            "cascade": "all, delete",
-        },
-        back_populates="sessions",
-    )
+    session: "Session" = Relationship(back_populates="users")
+    user: "User" = Relationship(back_populates="sessions")

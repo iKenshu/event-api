@@ -85,6 +85,18 @@ def test_get_session(mock_event):
     assert data["id"] == session.id
 
 
+def test_get_session_not_found():
+    """
+    This TEST is used to get a session that does not exist.
+    """
+    random_id = random.randint(100, 1000)
+    response = client.get(f"/session/{random_id}")
+    assert response.status_code == 404
+
+    data = response.json()
+    assert data["detail"] == "Session not found"
+
+
 def test_update_session(mock_event):
     """
     This TEST is used to update a session.

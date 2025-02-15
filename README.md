@@ -41,6 +41,12 @@ The build inmediatly runs alembic migrations and upgrades the database, but you 
 docker-compose exec api alembic upgrade head
 ```
 
+And you can run the tests:
+
+```bash
+docker-compose exec api pytest
+```
+
 ## License
 
 This API is licensed under the MIT License.
